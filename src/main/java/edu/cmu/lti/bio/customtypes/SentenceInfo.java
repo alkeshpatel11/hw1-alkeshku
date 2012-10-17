@@ -1,6 +1,7 @@
 package edu.cmu.lti.bio.customtypes;
 
 public class SentenceInfo {
+	
 	String id;
 	String text;
 	
@@ -21,5 +22,6 @@ public class SentenceInfo {
 	public void setText(String text) {
 		this.text = text;
 	}
+	
 
 }

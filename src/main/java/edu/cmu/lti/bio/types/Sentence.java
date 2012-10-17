@@ -1,6 +1,6 @@
 
 
-/* First created by JCasGen Fri Oct 12 15:34:27 EDT 2012 */
+/* First created by JCasGen Sat Oct 13 16:13:39 EDT 2012 */
 package edu.cmu.lti.bio.types;
 
 import org.apache.uima.jcas.JCas; 
@@ -11,8 +11,8 @@ import org.apache.uima.jcas.tcas.Annotation;
 
 
 /** 
- * Updated by JCasGen Fri Oct 12 15:38:23 EDT 2012
- * XML source: /host/Users/alkesh/Desktop/Semester1/F12-Software Engineering for Information Systems/Assignments/hw1-alkeshku/src/main/resources/CpeDescriptor.xml
+ * Updated by JCasGen Sat Oct 13 17:12:36 EDT 2012
+ * XML source: /host/Users/alkesh/Desktop/Semester1/F12-Software_Engineering_for_Information_Systems/Assignments/hw1-alkeshku/src/main/resources/TypeSystemDescriptor.xml
  * @generated */
 public class Sentence extends Annotation {
   /** @generated

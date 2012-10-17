@@ -1,5 +1,5 @@
 
-/* First created by JCasGen Fri Oct 12 15:34:27 EDT 2012 */
+/* First created by JCasGen Sat Oct 13 17:12:36 EDT 2012 */
 package edu.cmu.lti.bio.types;
 
 import org.apache.uima.jcas.JCas;
@@ -11,12 +11,12 @@ import org.apache.uima.cas.impl.TypeImpl;
 import org.apache.uima.cas.Type;
 import org.apache.uima.cas.impl.FeatureImpl;
 import org.apache.uima.cas.Feature;
-import org.apache.uima.jcas.tcas.Annotation_Type;
+import org.apache.uima.jcas.cas.TOP_Type;
 
 /** 
- * Updated by JCasGen Fri Oct 12 15:38:23 EDT 2012
+ * Updated by JCasGen Sat Oct 13 17:12:36 EDT 2012
  * @generated */
-public class GeneTag_Type extends Annotation_Type {
+public class GeneTag_Type extends TOP_Type {
   /** @generated */
   @Override
   protected FSGenerator getFSGenerator() {return fsGenerator;}
@@ -45,38 +45,74 @@ public class GeneTag_Type extends Annotation_Type {
   public final static boolean featOkTst = JCasRegistry.getFeatOkTst("edu.cmu.lti.bio.types.GeneTag");
  
   /** @generated */
-  final Feature casFeat_id;
+  final Feature casFeat_geneName;
   /** @generated */
-  final int     casFeatCode_id;
+  final int     casFeatCode_geneName;
   /** @generated */ 
-  public String getId(int addr) {
-        if (featOkTst && casFeat_id == null)
-      jcas.throwFeatMissing("id", "edu.cmu.lti.bio.types.GeneTag");
-    return ll_cas.ll_getStringValue(addr, casFeatCode_id);
+  public String getGeneName(int addr) {
+        if (featOkTst && casFeat_geneName == null)
+      jcas.throwFeatMissing("geneName", "edu.cmu.lti.bio.types.GeneTag");
+    return ll_cas.ll_getStringValue(addr, casFeatCode_geneName);
   }
   /** @generated */    
-  public void setId(int addr, String v) {
-        if (featOkTst && casFeat_id == null)
-      jcas.throwFeatMissing("id", "edu.cmu.lti.bio.types.GeneTag");
-    ll_cas.ll_setStringValue(addr, casFeatCode_id, v);}
+  public void setGeneName(int addr, String v) {
+        if (featOkTst && casFeat_geneName == null)
+      jcas.throwFeatMissing("geneName", "edu.cmu.lti.bio.types.GeneTag");
+    ll_cas.ll_setStringValue(addr, casFeatCode_geneName, v);}
     
   
  
   /** @generated */
-  final Feature casFeat_text;
+  final Feature casFeat_start;
   /** @generated */
-  final int     casFeatCode_text;
+  final int     casFeatCode_start;
   /** @generated */ 
-  public String getText(int addr) {
-        if (featOkTst && casFeat_text == null)
-      jcas.throwFeatMissing("text", "edu.cmu.lti.bio.types.GeneTag");
-    return ll_cas.ll_getStringValue(addr, casFeatCode_text);
+  public int getStart(int addr) {
+        if (featOkTst && casFeat_start == null)
+      jcas.throwFeatMissing("start", "edu.cmu.lti.bio.types.GeneTag");
+    return ll_cas.ll_getIntValue(addr, casFeatCode_start);
   }
   /** @generated */    
-  public void setText(int addr, String v) {
-        if (featOkTst && casFeat_text == null)
-      jcas.throwFeatMissing("text", "edu.cmu.lti.bio.types.GeneTag");
-    ll_cas.ll_setStringValue(addr, casFeatCode_text, v);}
+  public void setStart(int addr, int v) {
+        if (featOkTst && casFeat_start == null)
+      jcas.throwFeatMissing("start", "edu.cmu.lti.bio.types.GeneTag");
+    ll_cas.ll_setIntValue(addr, casFeatCode_start, v);}
+    
+  
+ 
+  /** @generated */
+  final Feature casFeat_end;
+  /** @generated */
+  final int     casFeatCode_end;
+  /** @generated */ 
+  public int getEnd(int addr) {
+        if (featOkTst && casFeat_end == null)
+      jcas.throwFeatMissing("end", "edu.cmu.lti.bio.types.GeneTag");
+    return ll_cas.ll_getIntValue(addr, casFeatCode_end);
+  }
+  /** @generated */    
+  public void setEnd(int addr, int v) {
+        if (featOkTst && casFeat_end == null)
+      jcas.throwFeatMissing("end", "edu.cmu.lti.bio.types.GeneTag");
+    ll_cas.ll_setIntValue(addr, casFeatCode_end, v);}
+    
+  
+ 
+  /** @generated */
+  final Feature casFeat_score;
+  /** @generated */
+  final int     casFeatCode_score;
+  /** @generated */ 
+  public double getScore(int addr) {
+        if (featOkTst && casFeat_score == null)
+      jcas.throwFeatMissing("score", "edu.cmu.lti.bio.types.GeneTag");
+    return ll_cas.ll_getDoubleValue(addr, casFeatCode_score);
+  }
+  /** @generated */    
+  public void setScore(int addr, double v) {
+        if (featOkTst && casFeat_score == null)
+      jcas.throwFeatMissing("score", "edu.cmu.lti.bio.types.GeneTag");
+    ll_cas.ll_setDoubleValue(addr, casFeatCode_score, v);}
     
   
 
@@ -89,12 +125,20 @@ public class GeneTag_Type extends Annotation_Type {
     casImpl.getFSClassRegistry().addGeneratorForType((TypeImpl)this.casType, getFSGenerator());
 
  
-    casFeat_id = jcas.getRequiredFeatureDE(casType, "id", "uima.cas.String", featOkTst);
-    casFeatCode_id  = (null == casFeat_id) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_id).getCode();
+    casFeat_geneName = jcas.getRequiredFeatureDE(casType, "geneName", "uima.cas.String", featOkTst);
+    casFeatCode_geneName  = (null == casFeat_geneName) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_geneName).getCode();
 
  
-    casFeat_text = jcas.getRequiredFeatureDE(casType, "text", "uima.cas.String", featOkTst);
-    casFeatCode_text  = (null == casFeat_text) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_text).getCode();
+    casFeat_start = jcas.getRequiredFeatureDE(casType, "start", "uima.cas.Integer", featOkTst);
+    casFeatCode_start  = (null == casFeat_start) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_start).getCode();
+
+ 
+    casFeat_end = jcas.getRequiredFeatureDE(casType, "end", "uima.cas.Integer", featOkTst);
+    casFeatCode_end  = (null == casFeat_end) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_end).getCode();
+
+ 
+    casFeat_score = jcas.getRequiredFeatureDE(casType, "score", "uima.cas.Double", featOkTst);
+    casFeatCode_score  = (null == casFeat_score) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_score).getCode();
 
   }
 }

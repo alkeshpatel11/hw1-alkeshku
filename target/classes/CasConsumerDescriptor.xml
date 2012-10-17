@@ -7,9 +7,28 @@
     <description/>
     <version>1.0</version>
     <vendor/>
-    <configurationParameters/>
-    <configurationParameterSettings/>
-    <typeSystemDescription/>
+    <configurationParameters>
+      <configurationParameter>
+        <name>OUTPUT_FILE</name>
+        <description>output to be written</description>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>false</mandatory>
+      </configurationParameter>
+    </configurationParameters>
+    <configurationParameterSettings>
+      <nameValuePair>
+        <name>OUTPUT_FILE</name>
+        <value>
+          <string>src/main/resources/data/my.out</string>
+        </value>
+      </nameValuePair>
+    </configurationParameterSettings>
+    <typeSystemDescription>
+      <imports>
+        <import name="TypeSystemDescriptor"/>
+      </imports>
+    </typeSystemDescription>
     <typePriorities/>
     <fsIndexCollection/>
     <capabilities>
@@ -20,7 +39,7 @@
       </capability>
     </capabilities>
     <operationalProperties>
-      <modifiesCas>false</modifiesCas>
+      <modifiesCas>true</modifiesCas>
       <multipleDeploymentAllowed>false</multipleDeploymentAllowed>
       <outputsNewCASes>false</outputsNewCASes>
     </operationalProperties>
