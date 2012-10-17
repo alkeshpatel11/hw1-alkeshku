@@ -21,7 +21,12 @@ import edu.cmu.lti.bio.customtypes.SentenceInfo;
 import edu.cmu.lti.bio.types.Sentence;
 
 import org.apache.uima.jcas.tcas.DocumentAnnotation;
-
+/**
+ * 
+ * @author alkesh
+ *
+ *GeneFileReader reads the input file and convert each sentence in CAS
+ */
 public class GeneFileReader extends CollectionReader_ImplBase {
 
 	String mEncoding = null;
@@ -32,10 +37,9 @@ public class GeneFileReader extends CollectionReader_ImplBase {
 	@Override
 	public void initialize() throws ResourceInitializationException {
 
-		File file = new File((String) getConfigParameterValue("INPUT_FILE"));
-				//"/host/Users/alkesh/Desktop/Semester1/F12-Software Engineering for Information Systems/Assignments/hw1-alkeshku/src/main/resources/data/sample.in");// 
+		File file = new File((String) getConfigParameterValue("INPUT_FILE"));				
 
-		// get list of files (not subdirectories) in the specified directory
+		// get list of sentences from the input file
 		mSentences = new ArrayList<SentenceInfo>();
 		BufferedReader bfr = null;
 		try {
@@ -72,6 +76,7 @@ public class GeneFileReader extends CollectionReader_ImplBase {
 
 	}
 
+	
 	@Override
 	public void getNext(CAS aCAS) throws IOException, CollectionException {
 		JCas jcas;
@@ -107,28 +112,25 @@ public class GeneFileReader extends CollectionReader_ImplBase {
 					.setLanguage(mLanguage);
 		}
 
-		// Also store location of source document in CAS.
-		// This information is critical if CAS Consumers will
-		// need to know where the original document contents
-		// are located.
-		// For example, the Semantic Search CAS Indexer
-		// writes this information into the search index that
-		// it creates, which allows applications that use the
-		// search index to locate the documents that satisfy
-		// their semantic queries.
-
+	
 		Sentence sent=new Sentence(jcas);
-		//sent.setBegin(0);
-		//sent.setEnd(sentence.getText().length());
 		
 		sent.setId(sentence.getId());
 		sent.setText(sentence.getText());
-		//sent.getCAS().setDocumentText(text);
 		sent.addToIndexes();
 	}
 
+	/**
+	 * Closes the file and other resources initialized during the process
+	 * 
+	 */
+
 	@Override
 	public void close() throws IOException {
+		if(mSentences!=null){
+			mSentences.clear();
+			mSentences=null;
+		}
 	}
 
 	@Override

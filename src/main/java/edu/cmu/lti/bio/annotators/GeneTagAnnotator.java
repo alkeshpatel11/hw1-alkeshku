@@ -15,12 +15,14 @@ import edu.cmu.lti.bio.genetrainer.NGramLuceneWrapper;
 /**
  * @author alkesh
  * 
+ * GeneTagAnnotator filter out some of the less likely GeneNames 
+ * extracted by previous annotator. It refers indexed GeneDataBase for
+ * finding relevant match with score 
  */
 public class GeneTagAnnotator extends JCasAnnotator_ImplBase {
 
 	NGramLuceneWrapper searcher = new NGramLuceneWrapper();
 	int N = 100;
-
 
 	@Override
 	public void process(JCas jCas) throws AnalysisEngineProcessException {
@@ -51,18 +53,17 @@ public class GeneTagAnnotator extends JCasAnnotator_ImplBase {
 			ArrayList<GeneCount> results = new ArrayList<GeneCount>();
 
 			try {
-			
+
 				results = searcher.searchIndex(geneName, N);
 			} catch (Exception e) {
-				System.out.println("Searching failed for "+geneName);
-				//e.printStackTrace();
+				System.out.println("Searching failed for " + geneName);
+				e.printStackTrace();
 			}
 			if (results.size() > 0) {
 				geneTag.setScore(results.get(0).getCount());
-				//geneTag.setGeneName(results.get(0).getGeneName());
+				// geneTag.setGeneName(results.get(0).getGeneName());
 			}
 
-			// System.out.println(geneName+"\t"+start+"\t"+end);
 			i++;
 		}
 
@@ -75,13 +76,5 @@ public class GeneTagAnnotator extends JCasAnnotator_ImplBase {
 
 	}
 
-	/*
-	 * public double matchWithNGramModel(String geneName) { double score = 0.0;
-	 * geneName = geneName.toLowerCase().trim(); if
-	 * (hshGeneCount.containsKey(geneName)) { System.out.println("Found : " +
-	 * geneName); return hshGeneCount.get(geneName).getCount(); }
-	 * 
-	 * return score; }
-	 */
-
+	
 }

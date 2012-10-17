@@ -15,12 +15,24 @@
         <multiValued>false</multiValued>
         <mandatory>false</mandatory>
       </configurationParameter>
+      <configurationParameter>
+        <name>THRESHOLD</name>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>false</mandatory>
+      </configurationParameter>
     </configurationParameters>
     <configurationParameterSettings>
       <nameValuePair>
         <name>OUTPUT_FILE</name>
         <value>
           <string>src/main/resources/data/my.out</string>
+        </value>
+      </nameValuePair>
+      <nameValuePair>
+        <name>THRESHOLD</name>
+        <value>
+          <string>3.0</string>
         </value>
       </nameValuePair>
     </configurationParameterSettings>

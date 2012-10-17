@@ -4,8 +4,6 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import org.apache.uima.cas.CAS;
 import org.apache.uima.cas.CASException;
@@ -22,6 +20,7 @@ public class GeneCasConsumer extends CasConsumer_ImplBase {
 	int mDocNum;
 	File mOutputFile = null;
 	BufferedWriter bfw = null;
+	double THRESHOLD = 4.0;
 
 	@Override
 	public void initialize() {
@@ -32,6 +31,8 @@ public class GeneCasConsumer extends CasConsumer_ImplBase {
 					(String) getConfigParameterValue("OUTPUT_FILE"));
 
 			bfw = new BufferedWriter(new FileWriter(mOutputFile));
+			THRESHOLD = Double
+					.parseDouble((String) getConfigParameterValue("THRESHOLD"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -48,7 +49,7 @@ public class GeneCasConsumer extends CasConsumer_ImplBase {
 			throw new ResourceProcessException(e);
 		}
 
-		// retreive the filename of the input file from the CAS
+		// retreive the gene names list from the CAS
 		FSIterator it = jcas.getAnnotationIndex(GeneTagList.type).iterator();
 
 		GeneTagList geneLoc = null;
@@ -85,38 +86,47 @@ public class GeneCasConsumer extends CasConsumer_ImplBase {
 				break;
 			}
 
-			if (geneTag.getScore() > 3.0) {
+			if (geneTag.getScore() > THRESHOLD) {
 				int start = geneTag.getStart();
 				int end = geneTag.getEnd();
-				String geneName=sentenceText.substring(start, end);
-				
-				int countBegin=nSpaces(sentenceText,start);
-				int countEnd=nSpaces(sentenceText,end);
-				bfw.write(id + "|" + (start-countBegin) + " " + (end-countEnd-1) + "|"
-						+  geneName+ "\t"
+				String geneName = sentenceText.substring(start, end);
+
+				int countBegin = nSpaces(sentenceText, start);
+				int countEnd = nSpaces(sentenceText, end);
+				bfw.write(id + "|" + (start - countBegin) + " "
+						+ (end - countEnd - 1) + "|" + geneName + "\t"
 						+ geneTag.getScore());
 				bfw.newLine();
-				
+
 			}
 			i++;
 		}
 
 		// bfw.flush();
 	}
-	
-	public int nSpaces(String orgSentence,int beforeIdx){
 
-		String sentence=orgSentence.substring(0, beforeIdx);
+	/**
+	 * Adjusts the offsets of annotation by removing whitespace
+	 * @param orgSentence
+	 * @param beforeIdx
+	 * @return
+	 */
+	public int nSpaces(String orgSentence, int beforeIdx) {
+
+		String sentence = orgSentence.substring(0, beforeIdx);
 		int count = 0;
-		while (sentence.indexOf(" ")>-1){
-		    sentence = sentence.replaceFirst(" ", "");
-		    count++;
+		while (sentence.indexOf(" ") > -1) {
+			sentence = sentence.replaceFirst(" ", "");
+			count++;
 		}
-		return count ;
+		return count;
 
-		
 	}
 
+	/**
+	 * Closes the file and other resources initialized during the process
+	 * 
+	 */
 	@Override
 	public void destroy() {
 
