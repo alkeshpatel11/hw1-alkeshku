@@ -4,10 +4,10 @@
   <primitive>false</primitive>
   <delegateAnalysisEngineSpecifiers>
     <delegateAnalysisEngine key="POSTagAnnotator">
-      <import location="../resources/POSTagAnnotator.xml"/>
+      <import location="POSTagAnnotator.xml"/>
     </delegateAnalysisEngine>
     <delegateAnalysisEngine key="GeneTagAnnotator">
-      <import location="../resources/GeneTagAnnotator.xml"/>
+      <import location="GeneTagAnnotator.xml"/>
     </delegateAnalysisEngine>
   </delegateAnalysisEngineSpecifiers>
   <analysisEngineMetaData>
