@@ -27,7 +27,7 @@
       <nameValuePair>
         <name>GENE_DATA_FILE</name>
         <value>
-          <string>../data/allGenes-sorted.txt</string>
+          <string>data/allGenes-sorted.txt</string>
         </value>
       </nameValuePair>
       <nameValuePair>
